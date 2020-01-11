@@ -3,13 +3,11 @@ using Xunit;
 
 namespace AsyncTestSetup.Tests
 {
-    public class UnitTest1 : IClassFixture<TestFixture>
-    {
-        private readonly TestFixture _testFixture;
-
-        public UnitTest1(TestFixture testFixture)
-        {
-            _testFixture = testFixture;
+    public class UnitTest1 : TestFixture
+    {        
+        public UnitTest1()
+            : base (TestFixture.Init, "Async init successful")
+        {            
         }
 
         [Fact]
@@ -18,7 +16,7 @@ namespace AsyncTestSetup.Tests
             // Arrange
             var expected = "Async init successful";
 
-            Assert.Equal(expected, _testFixture.HeaderText);
+            Assert.Equal(expected, HeaderText);
         }
     }
 }
